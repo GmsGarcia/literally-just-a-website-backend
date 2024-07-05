@@ -1,0 +1,24 @@
+{
+  "name": "kodus_backend",
+  "version": "1.0.0",
+  "description": "starting the app - probably not going to be kodus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlmpires/kodus.git"
+  },
+  "keywords": [
+    "kodus",
+    "basic",
+    "testing"
+  ],
+  "author": "kodus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlmpires/kodus/issues"
+  },
+  "homepage": "https://github.com/dlmpires/kodus#readme"
+}
