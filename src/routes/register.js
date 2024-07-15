@@ -17,12 +17,12 @@ registerRouter.get('/', (req, res) => {
 
 registerRouter.post('/', async (req, res) => {
     try {
-        db.query('INSERT INTO users (username, password) VALUES (?, ?)', [req.body.username, bcrypt.hash(req.body.password, 10)], function (err) {
+        db.query('INSERT INTO users (username, password) VALUES (?, ?)', [req.body.username, await bcrypt.hash(req.body.password, 10)], function (err) {
             if (err) throw res.send("desculpa nao deu :P"), console.log(err);
             res.send("Registado :P")
         })
     } catch (err) {
         console.log("Error: ", err)
-        res.status(500).send("error :P")
+        res.status(500).send("SERVER ERROR :P")
     }
 })
