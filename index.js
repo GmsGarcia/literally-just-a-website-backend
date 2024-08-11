@@ -1,13 +1,14 @@
 import express from 'express';
+import cors from 'cors';
 import db from './src/configs/db.js';
 import passport from 'passport';
 import dotenv from 'dotenv';
 import session from 'express-session';
 import initializePassport from './src/strategies/login.js';
 //Routes
-import { registerRouter } from './src/routes/register.js';
-import { dashboardRouter } from './src/routes/dashboard.js';
-import { logoutRouter } from './src/routes/logout.js';
+import { registerRouter } from './src/routes/auth/register.js';
+import { dashboardRouter } from './src/routes/auth/dashboard.js';
+import { logoutRouter } from './src/routes/auth/logout.js';
 
 const app = express();
 dotenv.config()
@@ -20,6 +21,10 @@ app.use(session({
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: false
+}))
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
 }))
 app.use(passport.initialize())
 app.use(passport.session())

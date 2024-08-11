@@ -1,6 +1,6 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
-import db from '../configs/db.js'
+import db from '../../configs/db.js'
 import bodyParser from 'body-parser';
 
 export const registerRouter = express.Router();
