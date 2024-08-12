@@ -33,19 +33,25 @@ app.get('/', (req, res) => {
     res.send(':P')
 })
 
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/sucesso',
-    failureRedirect: '/falha',
-    failureMessage: true
-}))
-
-app.get('/sucesso', (req, res) => {
-    res.send('Login successful!');
+app.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            console.error('Error during authentication:', err);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+        if (!user) {
+            return res.status(401).json({ message: 'Login failed!' });
+        }
+        req.logIn(user, (err) => {
+            if (err) {
+                console.error('Error during login:', err);
+                return res.status(500).json({ message: 'Internal server error' });
+            }
+            return res.status(200).json({ message: 'Login successful!', user: user });
+        });
+    })(req, res, next);
 });
 
-app.get('/falha', (req, res) => {
-    res.send('Login failed!');
-});
 
 
 app.use('/register', registerRouter)
