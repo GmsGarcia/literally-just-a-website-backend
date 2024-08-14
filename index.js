@@ -9,6 +9,7 @@ import initializePassport from './src/strategies/login.js';
 import { registerRouter } from './src/routes/auth/register.js';
 import { dashboardRouter } from './src/routes/auth/dashboard.js';
 import { logoutRouter } from './src/routes/auth/logout.js';
+import { chatRouter } from './chat.js';
 
 const app = express();
 dotenv.config()
@@ -29,10 +30,6 @@ app.use(cors({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.get('/', (req, res) => {
-    res.send(':P')
-})
-
 app.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
         if (err) {
@@ -52,11 +49,11 @@ app.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-
-
 app.use('/register', registerRouter)
 app.use('/dashboard', dashboardRouter)
 app.use('/logout', logoutRouter)
+app.use('/chat', chatRouter)
 
-
-app.listen('8550')
+app.listen(8550, () => {
+    console.log('App listening on http://localhost:8550');
+});
