@@ -2,7 +2,6 @@ import express from "express";
 import passport from "passport";
 import initializePassport from '../../strategies/login.js';
 
-
 export const infoRouter = express.Router();
 
 //Initializing passport
@@ -12,7 +11,7 @@ infoRouter.use(passport.session())
 
 //Just prints user's data
 infoRouter.get("/", async (req, res) => {
-  console.log(req.user)
+  return res.status(200).json({ user: req.user });
 });
 
 // Random route that selects everything from users table

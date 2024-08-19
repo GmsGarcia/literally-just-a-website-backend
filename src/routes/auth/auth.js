@@ -51,8 +51,6 @@ authRouter.post('/register', async (req, res) => {
     }
 })
 
-
-
 // Login Route
 authRouter.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
@@ -72,4 +70,3 @@ authRouter.post('/login', (req, res, next) => {
         });
     })(req, res, next);
 });
-
