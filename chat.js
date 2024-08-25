@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import cors from 'cors';
 
 export const chatRouter = express();
+
 chatRouter.use(cors({
     origin: 'http://localhost:3000', 
     methods: ["GET", "POST"],
@@ -19,11 +20,13 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
+    const username = socket.handshake.query.username
+
     console.log('User connected, id: ' + socket.id);
 
     socket.on('chat message', (message) => {
-        console.log('Received message:', message);
-        io.emit('chat message', `${socket.id.substring(0,2)} said ${message}`);
+        console.log('Received message:', message, 'Socket id:', socket.id);
+        io.emit('chat message', `${username} said ${message}`);
     });
 
     socket.on("disconnect", () => {
