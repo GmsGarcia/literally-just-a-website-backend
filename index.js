@@ -8,13 +8,17 @@ import { authRouter } from './src/routes/auth/auth.js';
 
 const app = express();
 
+// parsing text
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+
+// storing user's session
 app.use(session({
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: false
 }))
+// using cors to allow frontend to communicate with backend
 app.use(cors({
     origin: 'http://localhost:3000',
     credentials: true
