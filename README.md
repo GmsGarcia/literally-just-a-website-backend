@@ -3,4 +3,4 @@ started out as a random login project because I wanted to program in express aft
 <br>
 
 # Main Technologies
-<h3 align="left">- 🚀 **Express.js**<br>- 🌐 **Socket.io**: Real-time communication between web clients and servers<br>- 🔐 **Passport**: Middleware for user authentication<br>- 🔒 **Bcrypt**: Used to hash passwords<br>- 🗃️ **MySQL**: Database</h3>
+<h4 align="left">- 🚀 Express.js - Used to build API <br>- 🌐 Socket.io: Real-time communication between web clients and servers<br>- 🔐 Passport: Middleware for user authentication<br>- 🔒 Bcrypt: Used to hash passwords<br>- 🗃️ MySQL: Database</h4>
